@@ -1,9 +1,5 @@
 #include "Fraction.h"
-ostream& operator<<(std::ostream& out, const Fraction& frac)
-{
-	out << frac.Numerator << "/" << frac.Denominator;
-	return out;
-}
+
 void Fraction::SetNumerator(long numerator)
 {
 	Numerator = numerator;
@@ -27,15 +23,15 @@ Fraction::Fraction(long numerator, long denominator)
 	SetNumerator(numerator);
 	SetDenominator(denominator);
 }
-long Fraction::GetNumerator()
+long Fraction::GetNumerator() const
 {
 	return Numerator;
 }
-long Fraction::GetDenominator()
+long Fraction::GetDenominator() const
 {
 	return Denominator;
 }
-double Fraction::GetDouble()
+ double Fraction::GetDouble()
 {
 	return (Numerator * 1.0 / Denominator);
 }
@@ -53,7 +49,7 @@ void Fraction::reduction_Fraction(long dop)
 }
 Fraction Fraction::operator+(Fraction& frac)
 {
-	return Fraction(Numerator * frac.Denominator + frac.Numerator * Denominator, Denominator * frac.Denominator);
+	return Fraction(Numerator * frac.GetDenominator() + frac.GetNumerator() * GetDenominator(), Denominator * frac.GetDenominator());
 }
 
 Fraction Fraction::operator-()
@@ -63,32 +59,32 @@ Fraction Fraction::operator-()
 
 Fraction Fraction::operator-(Fraction& frac2)
 {
-	return Fraction(Numerator * frac2.Denominator - frac2.Numerator * Denominator, Denominator * frac2.Denominator);
+	return Fraction(Numerator * frac2.GetDenominator() - frac2.GetNumerator() * Denominator, Denominator * frac2.GetDenominator());
 }
 
 Fraction Fraction::operator*(Fraction& frac2)
 {
-	return Fraction(Numerator * frac2.Numerator, Denominator * frac2.Denominator);
+	return Fraction(Numerator * frac2.GetNumerator(), Denominator * frac2.GetDenominator());
 }
 
 Fraction Fraction::operator/(Fraction& frac2)
 {
-	return Fraction(Numerator * frac2.Denominator, Denominator * frac2.Numerator);
+	return Fraction(Numerator * frac2.GetDenominator(), Denominator * frac2.GetNumerator());
 }
 
 bool Fraction::operator==(Fraction& frac2)
 {
-	return (Numerator == frac2.Numerator && frac2.Denominator == Denominator);
+	return (Numerator == frac2.GetNumerator() && frac2.GetDenominator() == Denominator);
 }
 
 bool Fraction::operator!=(Fraction& frac2)
 {
-	return (Numerator != frac2.Numerator && frac2.Denominator != Denominator);
+	return (Numerator != frac2.GetNumerator() && frac2.GetDenominator() != Denominator);
 }
 
 bool Fraction::operator>(Fraction& frac2)
 {
-	if ((Numerator * frac2.Denominator - frac2.Numerator * Denominator) > 0)
+	if ((Numerator * frac2.GetDenominator() - frac2.GetNumerator() * Denominator) > 0)
 	{
 		return true;
 	}
@@ -96,10 +92,11 @@ bool Fraction::operator>(Fraction& frac2)
 	{
 		return false;
 	}
+	
 }
 bool Fraction::operator<(Fraction& frac2)
 {
-	if ((Numerator * frac2.Denominator - frac2.Numerator * Denominator) < 0)
+	if ((Numerator * frac2.GetDenominator() - frac2.GetNumerator() * Denominator) < 0)
 	{
 		return true;
 	}
@@ -115,4 +112,10 @@ bool Fraction::operator<=(Fraction& frac2)
 bool Fraction::operator>=(Fraction& frac2)
 {
 	return ((*this == frac2) || (*this > frac2));
+}
+ostream& operator<<(std::ostream& out, const Fraction& frac)
+{
+	
+	out << frac.GetNumerator() << "/" << frac.GetDenominator();
+	return out;
 }

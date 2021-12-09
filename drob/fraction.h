@@ -11,8 +11,8 @@ public:
 	void SetDenominator(long denominator);
 	Fraction();
 	Fraction(long numerator, long denominator);
-	long GetNumerator();
-	long GetDenominator();
+	long GetNumerator() const;
+	long GetDenominator() const;
 	double GetDouble();
 	void reduction_Fraction(long dop);
 	friend ostream& operator<< (std::ostream& out, const Fraction& frac);
