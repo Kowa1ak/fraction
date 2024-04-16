@@ -57,6 +57,10 @@ int main()
 	{
 		cout << "firts Fraction >= second Fraction" << endl;
 	}
+	if ((frac <= frac2))
+	{
+		cout << "firts Fraction <= second Fraction" << endl;
+	}
 	cout << "frac >= frac2:" << (frac >= frac2) << endl;
 	cout << "frac <= frac2:" << (frac <= frac2) << endl;
 	cout << "double:" << frac.GetDouble();
