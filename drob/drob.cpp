@@ -3,6 +3,7 @@
 using namespace std;
 int main()
 {
+
 	long numerator, denominator;
 	cout << "enter numerator:";
 	cin >> numerator;
@@ -14,7 +15,7 @@ int main()
 	{
 		frac.SetDenominator(denominator);
 	}
-	catch (const std::exception& ex)
+	catch (const std::exception &ex)
 	{
 		cout << "second input error:" << ex.what();
 	}
@@ -51,6 +52,10 @@ int main()
 	if ((frac < frac2))
 	{
 		cout << "firts Fraction < second Fraction" << endl;
+	}
+	if ((frac >= frac2))
+	{
+		cout << "firts Fraction >= second Fraction" << endl;
 	}
 	cout << "frac >= frac2:" << (frac >= frac2) << endl;
 	cout << "frac <= frac2:" << (frac <= frac2) << endl;
